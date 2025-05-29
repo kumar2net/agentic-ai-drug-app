@@ -311,4 +311,111 @@ h2 {
 h3 {
   color: #61dafb;
   margin: 20px 0 10px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .App-header {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-input-container {
+    width: 100%;
+  }
+
+  .category-select {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .drug-details {
+    padding: 1rem;
+  }
+
+  .drug-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .drug-info {
+    grid-template-columns: 1fr;
+  }
+
+  .side-effects ul {
+    grid-template-columns: 1fr;
+  }
+
+  .alternatives {
+    padding: 1rem;
+  }
+
+  .alternative-item {
+    padding: 1rem;
+  }
+
+  .alt-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  input[type="text"],
+  .category-select,
+  button {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+
+  .suggestion-item {
+    padding: 0.6rem;
+  }
+
+  .suggestion-name {
+    font-size: 0.9rem;
+  }
+
+  .suggestion-category {
+    font-size: 0.8rem;
+  }
+
+  .drug-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .price-tag {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .side-effects h3 {
+    font-size: 1.1rem;
+  }
+
+  .alternatives h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Add viewport meta tag to HTML */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
 } 
