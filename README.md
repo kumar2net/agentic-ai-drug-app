@@ -16,7 +16,7 @@ A small React-based app to learn agentic AI and model context protocol. This app
    npm install
    ```
 3. Start the development server:
-   ```bash
+```bash
    npm start
    ```
 

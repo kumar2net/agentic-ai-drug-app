@@ -1,10 +1,4 @@
----
-layout: layouts/post.njk
-title: "Building a Smart Drug Suggestion App with React: A Comprehensive Guide"
-date: 2024-03-19
-tags: ["react", "javascript", "ai", "healthcare", "web development"]
-description: "A comprehensive guide to building an intelligent drug suggestion application with React and agentic AI features."
----
+# Building a Smart Drug Suggestion App with React: A Comprehensive Guide
 
 In today's digital healthcare landscape, having access to accurate and user-friendly medication information is crucial. Our Drug Suggestion App is a modern, intelligent solution that helps users find, compare, and manage their medications effectively. Let's dive into the key features and technical implementation of this application.
 
