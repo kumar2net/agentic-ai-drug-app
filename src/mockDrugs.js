@@ -662,7 +662,7 @@ const drugs = [
   {
     name: "Artificial Disc",
     category: "Spine Implants",
-    price: 4500,
+    price: 450000,
     combination: false,
     strength: "10mm",
     dosageForm: "Implant",
@@ -672,21 +672,21 @@ const drugs = [
       {
         name: "Mobi-C Disc",
         manufacturer: "Zimmer Biomet",
-        price: 4800,
+        price: 480000,
         material: "Metal-on-Polyethylene",
         advantages: ["Multi-level indication", "Motion preservation", "Reduced adjacent level stress"]
       },
       {
         name: "Prestige LP",
         manufacturer: "Medtronic",
-        price: 4600,
+        price: 460000,
         material: "Metal-on-Metal",
         advantages: ["Low profile design", "Excellent wear resistance", "Long-term durability"]
       },
       {
         name: "ProDisc-C",
         manufacturer: "Centinel Spine",
-        price: 4700,
+        price: 470000,
         material: "Metal-on-Polyethylene",
         advantages: ["Fixed core design", "Predictable motion", "Proven long-term results"]
       }
