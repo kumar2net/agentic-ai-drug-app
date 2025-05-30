@@ -393,7 +393,6 @@ function App() {
       </header>
       <main>
         <CervicalADRMarket />
-        <DrugSuggestion />
       </main>
     </div>
   );
