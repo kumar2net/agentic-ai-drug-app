@@ -990,16 +990,15 @@ h3 {
 }
 
 .alternatives-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .alternative-item {
-  background: white;
+  background: #f8f9fa;
+  border-radius: 8px;
   padding: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+  border: 1px solid #e9ecef;
 }
 
 .alt-header {
@@ -1010,67 +1009,375 @@ h3 {
 }
 
 .alt-name {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.1rem;
   color: #2c3e50;
 }
 
 .price-diff {
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
   font-size: 0.9rem;
   font-weight: 500;
 }
 
 .price-diff.higher {
-  background: #e74c3c;
-  color: white;
+  background-color: #ffe3e3;
+  color: #e03131;
 }
 
 .price-diff.lower {
-  background: #2ecc71;
-  color: white;
+  background-color: #e3fcef;
+  color: #2b8a3e;
 }
 
 .alt-details {
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 0.95rem;
+  color: #495057;
 }
 
 .alt-details p {
   margin: 0.25rem 0;
 }
 
-.modal-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 2px solid #eee;
+.advantages {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e9ecef;
 }
 
-.modal-actions button {
-  flex: 1;
-  padding: 0.8rem;
+.advantages ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.advantages li {
+  margin: 0.25rem 0;
+  color: #495057;
+}
+
+/* Market Analytics Container */
+.market-analytics-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.market-analytics {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.market-analytics h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.analytics-controls {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeframe-selector {
+  display: flex;
+  gap: 1rem;
+}
+
+.timeframe-selector button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #666;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeframe-selector button.active {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.overview-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.overview-card h4 {
+  color: #666;
+  margin-bottom: 1rem;
   font-size: 1rem;
+}
+
+.overview-card .value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.overview-card .trend {
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.overview-card .trend.positive {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.overview-card .trend.negative {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.analytics-section {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.analytics-section h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.chart-container {
+  height: 400px;
+  margin: 1rem 0;
+}
+
+.trends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.trend-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.trend-card h4 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.trend-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.trend-card li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.trend-card li:last-child {
+  border-bottom: none;
+}
+
+.surgeon-stats,
+.hospital-stats {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.stat .label {
+  color: #666;
+}
+
+.stat .value {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .drug-details-modal {
-    width: 95%;
-    margin: 1rem;
+  .market-analytics {
+    padding: 1rem;
   }
 
-  .drug-details-grid {
+  .overview-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
   }
 
-  .modal-actions {
-    flex-direction: column;
+  .trends-grid {
+    grid-template-columns: 1fr;
   }
 
-  .modal-actions button {
+  .chart-container {
+    height: 300px;
+  }
+
+  .timeframe-selector {
+    flex-wrap: wrap;
+  }
+
+  .timeframe-selector button {
+    flex: 1;
+    min-width: 100px;
+  }
+}
+
+/* Tab Navigation Styles */
+.tab-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.tab-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.tab-button:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.tab-button.active {
+  background-color: #3498db;
+  color: white;
+  border-color: #3498db;
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+}
+
+.tab-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Spine Implants Section Styles */
+.spine-implants-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.spine-subtabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.subtab-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.subtab-button:hover {
+  color: #3498db;
+}
+
+.subtab-button.active {
+  color: #3498db;
+  font-weight: 500;
+}
+
+.subtab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #3498db;
+  border-radius: 3px 3px 0 0;
+}
+
+.spine-content {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+/* Main Tabs Enhancement */
+.main-tabs {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.main-tabs .tab-button {
+  min-width: 180px;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .spine-subtabs {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .subtab-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .spine-content {
+    padding: 1rem;
+  }
+
+  .main-tabs .tab-button {
+    min-width: auto;
     width: 100%;
   }
 } 

@@ -2,6 +2,7 @@ import React, { useState, useContext, createContext, useEffect, useRef } from 'r
 import { apiService } from './services/api';
 import './App.css';
 import drugs from './mockDrugs';
+import MarketAnalytics from './components/MarketAnalytics';
 
 // Enhanced Agent Context Protocol
 const AgentContext = createContext();
@@ -152,6 +153,7 @@ function App() {
   const suggestionsRef = useRef(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedDrugDetails, setSelectedDrugDetails] = useState(null);
+  const [activeTab, setActiveTab] = useState('drugs');
 
   // Load initial data
   useEffect(() => {
@@ -175,10 +177,15 @@ function App() {
     const loadCategoryDrugs = async () => {
       try {
         setIsLoading(true);
-        const results = await apiService.searchDrugs({
-          category: selectedCategory,
-        });
-        setSearchResults(results);
+        if (activeTab === 'spine') {
+          // For spine implants tab, use the mock data directly
+          setSearchResults(drugs.filter(drug => drug.category === 'Spine Implants'));
+        } else {
+          const results = await apiService.searchDrugs({
+            category: selectedCategory,
+          });
+          setSearchResults(results);
+        }
       } catch (error) {
         console.error('Error loading category drugs:', error);
       } finally {
@@ -187,7 +194,7 @@ function App() {
     };
 
     loadCategoryDrugs();
-  }, [selectedCategory]);
+  }, [selectedCategory, activeTab]);
 
   // Search drugs
   const handleSearch = async () => {
@@ -214,9 +221,23 @@ function App() {
   const handleDrugSelect = async (drug) => {
     try {
       setIsLoading(true);
-      const details = await apiService.getDrugDetails(drug.name, selectedCategory);
-      setSelectedDrugDetails(details);
-      setShowDetailsModal(true);
+      // For spine implants, use the drug data directly
+      if (drug.category === 'Spine Implants') {
+        const details = {
+          ...drug,
+          alternatives: drug.alternatives.map(alt => ({
+            ...alt,
+            priceDifference: alt.price - drug.price,
+            priceDifferencePercentage: ((alt.price - drug.price) / drug.price * 100).toFixed(1)
+          }))
+        };
+        setSelectedDrugDetails(details);
+        setShowDetailsModal(true);
+      } else {
+        const details = await apiService.getDrugDetails(drug.name, drug.category);
+        setSelectedDrugDetails(details);
+        setShowDetailsModal(true);
+      }
     } catch (error) {
       console.error('Error getting drug details:', error);
     } finally {
@@ -333,126 +354,244 @@ function App() {
     handleSearch();
   };
 
+  // Update tab switching
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    // Close any open modals when switching tabs
+    setShowDetailsModal(false);
+    setShowReminderModal(false);
+    setShowInteractionModal(false);
+    setSelectedDrugDetails(null);
+    
+    if (tab === 'spine') {
+      setSelectedCategory('Spine Implants');
+      setSearchResults(drugs.filter(drug => drug.category === 'Spine Implants'));
+    } else if (tab === 'drugs') {
+      setSelectedCategory('all');
+      setSearchResults([]);
+    }
+  };
+
+  // Add useEffect to handle modal state
+  useEffect(() => {
+    // Close modals when switching tabs
+    if (activeTab !== 'drugs' && activeTab !== 'spine') {
+      setShowDetailsModal(false);
+      setShowReminderModal(false);
+      setShowInteractionModal(false);
+      setSelectedDrugDetails(null);
+    }
+  }, [activeTab]);
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Agentic AI Drug Suggestion App</h1>
-        
-        {/* Notifications Panel */}
-        {notifications.length > 0 && (
-          <div className="notifications-panel">
-            {notifications.map((notification, index) => (
-              <div key={index} className={`notification ${notification.type}`}>
-                {notification.message}
-              </div>
-            ))}
-          </div>
-        )}
 
-        <div className="search-container">
-          <div className="search-input-container" ref={suggestionsRef}>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={() => setShowSuggestions(true)}
-              placeholder="Search drugs..."
-            />
-            {showSuggestions && suggestions.length > 0 && (
-              <ul className="suggestions-list">
-                {suggestions.map((drug, index) => (
-                  <li
-                    key={index}
-                    onClick={() => handleSuggestionClick(typeof drug === 'string' ? drug : drug.name)}
-                    className="suggestion-item"
-                  >
-                    <span className="suggestion-name">
-                      {typeof drug === 'string' ? drug : drug.name}
-                    </span>
-                    {typeof drug !== 'string' && (
-                      <span className="suggestion-category">{drug.category}</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          <select 
-            value={selectedCategory} 
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="category-select"
+        {/* Main Tab Navigation */}
+        <div className="tab-navigation main-tabs">
+          <button 
+            className={`tab-button ${activeTab === 'drugs' ? 'active' : ''}`}
+            onClick={() => handleTabChange('drugs')}
           >
-            {categories.map(category => (
-              <option key={category} value={category}>
-                {category === 'all' ? 'All Categories' : category}
-              </option>
-            ))}
-          </select>
-          <button onClick={handleSearch} disabled={isLoading}>
-            {isLoading ? 'Searching...' : 'Search'}
+            Drugs & Medications
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'spine' ? 'active' : ''}`}
+            onClick={() => handleTabChange('spine')}
+          >
+            Spine Implants
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'analytics' ? 'active' : ''}`}
+            onClick={() => handleTabChange('analytics')}
+          >
+            Market Analytics
           </button>
         </div>
 
-        {isLoading && <div className="loading-spinner"></div>}
-        
-        {!isLoading && searchResults.length === 0 && (
-          <div className="not-found">
-            <h2>No drugs found in {selectedCategory === 'all' ? 'any category' : selectedCategory}</h2>
-            <p>Please try another category.</p>
-          </div>
-        )}
-
-        {!isLoading && searchResults.length > 0 && (
-          <div className="results-container">
-            <h2>Drugs in {selectedCategory === 'all' ? 'All Categories' : selectedCategory}</h2>
-            <div className="drug-grid">
-              {searchResults.map((drug) => (
-                <div key={drug.name} className="drug-card">
-                  <div className="drug-header">
-                    <h3>{drug.name}</h3>
-                    <div className="drug-actions-header">
-                      <button 
-                        onClick={() => {
-                          const newFavorites = preferences.favoriteDrugs.includes(drug.name)
-                            ? preferences.favoriteDrugs.filter(name => name !== drug.name)
-                            : [...preferences.favoriteDrugs, drug.name];
-                          updatePreferences({ favoriteDrugs: newFavorites });
-                        }}
-                        className={`favorite-btn ${preferences.favoriteDrugs.includes(drug.name) ? 'active' : ''}`}
-                      >
-                        {preferences.favoriteDrugs.includes(drug.name) ? '★' : '☆'}
-                      </button>
-                      <span className="price-tag">₹{drug.price}</span>
+        {/* Tab Content */}
+        <div className="tab-content">
+          {activeTab === 'drugs' && (
+            <>
+              {/* Notifications Panel */}
+              {notifications.length > 0 && (
+                <div className="notifications-panel">
+                  {notifications.map((notification, index) => (
+                    <div key={index} className={`notification ${notification.type}`}>
+                      {notification.message}
                     </div>
-                  </div>
-                  <div className="drug-info">
-                    <p><strong>Combination:</strong> {drug.combination}</p>
-                    <p><strong>Strength:</strong> {drug.strength}</p>
-                    <p><strong>Dosage Form:</strong> {drug.dosageForm}</p>
-                    <p><strong>Manufacturer:</strong> {drug.manufacturer}</p>
-                  </div>
-                  <div className="drug-actions">
-                    <button onClick={() => handleDrugSelect(drug)}>View Details</button>
-                    <button onClick={() => {
-                      setSelectedDrug(drug);
-                      setShowReminderModal(true);
-                    }}>Set Reminder</button>
-                  </div>
-                  <div className="side-effects">
-                    <h4>Common Side Effects:</h4>
-                    <ul>
-                      {drug.sideEffects.map((effect, index) => (
-                        <li key={index}>{effect}</li>
+                  ))}
+                </div>
+              )}
+
+              <div className="search-container">
+                <div className="search-input-container" ref={suggestionsRef}>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setShowSuggestions(true)}
+                    placeholder="Search drugs..."
+                  />
+                  {showSuggestions && suggestions.length > 0 && (
+                    <ul className="suggestions-list">
+                      {suggestions.map((drug, index) => (
+                        <li
+                          key={index}
+                          onClick={() => handleSuggestionClick(typeof drug === 'string' ? drug : drug.name)}
+                          className="suggestion-item"
+                        >
+                          <span className="suggestion-name">
+                            {typeof drug === 'string' ? drug : drug.name}
+                          </span>
+                          {typeof drug !== 'string' && (
+                            <span className="suggestion-category">{drug.category}</span>
+                          )}
+                        </li>
                       ))}
                     </ul>
+                  )}
+                </div>
+                <select 
+                  value={selectedCategory} 
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="category-select"
+                >
+                  {categories.filter(cat => cat !== 'Spine Implants').map(category => (
+                    <option key={category} value={category}>
+                      {category === 'all' ? 'All Categories' : category}
+                    </option>
+                  ))}
+                </select>
+                <button onClick={handleSearch} disabled={isLoading}>
+                  {isLoading ? 'Searching...' : 'Search'}
+                </button>
+              </div>
+
+              {isLoading && <div className="loading-spinner"></div>}
+              
+              {!isLoading && searchResults.length === 0 && (
+                <div className="not-found">
+                  <h2>No drugs found in {selectedCategory === 'all' ? 'any category' : selectedCategory}</h2>
+                  <p>Please try another category.</p>
+                </div>
+              )}
+
+              {!isLoading && searchResults.length > 0 && (
+                <div className="results-container">
+                  <h2>Drugs in {selectedCategory === 'all' ? 'All Categories' : selectedCategory}</h2>
+                  <div className="drug-grid">
+                    {searchResults.map((drug) => (
+                      <div key={drug.name} className="drug-card">
+                        <div className="drug-header">
+                          <h3>{drug.name}</h3>
+                          <div className="drug-actions-header">
+                            <button 
+                              onClick={() => {
+                                const newFavorites = preferences.favoriteDrugs.includes(drug.name)
+                                  ? preferences.favoriteDrugs.filter(name => name !== drug.name)
+                                  : [...preferences.favoriteDrugs, drug.name];
+                                updatePreferences({ favoriteDrugs: newFavorites });
+                              }}
+                              className={`favorite-btn ${preferences.favoriteDrugs.includes(drug.name) ? 'active' : ''}`}
+                            >
+                              {preferences.favoriteDrugs.includes(drug.name) ? '★' : '☆'}
+                            </button>
+                            <span className="price-tag">₹{drug.price}</span>
+                          </div>
+                        </div>
+                        <div className="drug-info">
+                          <p><strong>Combination:</strong> {drug.combination}</p>
+                          <p><strong>Strength:</strong> {drug.strength}</p>
+                          <p><strong>Dosage Form:</strong> {drug.dosageForm}</p>
+                          <p><strong>Manufacturer:</strong> {drug.manufacturer}</p>
+                        </div>
+                        <div className="drug-actions">
+                          <button onClick={() => handleDrugSelect(drug)}>View Details</button>
+                          <button onClick={() => {
+                            setSelectedDrug(drug);
+                            setShowReminderModal(true);
+                          }}>Set Reminder</button>
+                        </div>
+                        <div className="side-effects">
+                          <h4>Common Side Effects:</h4>
+                          <ul>
+                            {drug.sideEffects.map((effect, index) => (
+                              <li key={index}>{effect}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              )}
+            </>
+          )}
 
-        {/* Drug Details Modal */}
+          {activeTab === 'spine' && (
+            <div className="spine-implants-section">
+              <div className="spine-content">
+                <div className="results-container">
+                  <h2>Spine Implants</h2>
+                  <div className="drug-grid">
+                    {searchResults.map((drug) => (
+                      <div key={drug.name} className="drug-card">
+                        <div className="drug-header">
+                          <h3>{drug.name}</h3>
+                          <div className="drug-actions-header">
+                            <button 
+                              onClick={() => {
+                                const newFavorites = preferences.favoriteDrugs.includes(drug.name)
+                                  ? preferences.favoriteDrugs.filter(name => name !== drug.name)
+                                  : [...preferences.favoriteDrugs, drug.name];
+                                updatePreferences({ favoriteDrugs: newFavorites });
+                              }}
+                              className={`favorite-btn ${preferences.favoriteDrugs.includes(drug.name) ? 'active' : ''}`}
+                            >
+                              {preferences.favoriteDrugs.includes(drug.name) ? '★' : '☆'}
+                            </button>
+                            <span className="price-tag">₹{drug.price}</span>
+                          </div>
+                        </div>
+                        <div className="drug-info">
+                          <p><strong>Material:</strong> {drug.material}</p>
+                          <p><strong>Size:</strong> {drug.size}</p>
+                          <p><strong>Manufacturer:</strong> {drug.manufacturer}</p>
+                          <p><strong>Surgical Technique:</strong> {drug.surgicalTechnique}</p>
+                        </div>
+                        <div className="drug-actions">
+                          <button onClick={() => handleDrugSelect(drug)}>View Details</button>
+                          <button onClick={() => {
+                            setSelectedDrug(drug);
+                            setShowReminderModal(true);
+                          }}>Set Reminder</button>
+                        </div>
+                        <div className="side-effects">
+                          <h4>Common Side Effects:</h4>
+                          <ul>
+                            {drug.sideEffects.map((effect, index) => (
+                              <li key={index}>{effect}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'analytics' && (
+            <div className="market-analytics-container">
+              <MarketAnalytics />
+            </div>
+          )}
+        </div>
+
+        {/* Drug Details Modal - moved outside tab blocks so it works for all tabs */}
         {showDetailsModal && selectedDrugDetails && (
           <div className="modal">
             <div className="modal-content drug-details-modal">
@@ -465,7 +604,6 @@ function App() {
                   ×
                 </button>
               </div>
-              
               <div className="modal-body">
                 <div className="drug-details-grid">
                   <div className="drug-details-section">
@@ -483,24 +621,22 @@ function App() {
                         <p><strong>Sterilization:</strong> {selectedDrugDetails.sterilization}</p>
                         <p><strong>Shelf Life:</strong> {selectedDrugDetails.shelfLife}</p>
                         <p><strong>Surgical Technique:</strong> {selectedDrugDetails.surgicalTechnique}</p>
-                        <p><strong>Compatibility:</strong> {selectedDrugDetails.compatibility.join(", ")}</p>
-                        <p><strong>Certifications:</strong> {selectedDrugDetails.certifications.join(", ")}</p>
+                        <p><strong>Compatibility:</strong> {selectedDrugDetails.compatibility && selectedDrugDetails.compatibility.join(", ")}</p>
+                        <p><strong>Certifications:</strong> {selectedDrugDetails.certifications && selectedDrugDetails.certifications.join(", ")}</p>
                         <p><strong>Warranty:</strong> {selectedDrugDetails.warranty}</p>
                         <p><strong>Surgical Time:</strong> {selectedDrugDetails.surgicalTime}</p>
                         <p><strong>Recovery Time:</strong> {selectedDrugDetails.recoveryTime}</p>
                       </>
                     )}
                   </div>
-
                   <div className="drug-details-section">
                     <h4>Side Effects</h4>
                     <ul>
-                      {selectedDrugDetails.sideEffects.map((effect, index) => (
+                      {selectedDrugDetails.sideEffects && selectedDrugDetails.sideEffects.map((effect, index) => (
                         <li key={index}>{effect}</li>
                       ))}
                     </ul>
                   </div>
-
                   <div className="drug-details-section">
                     <h4>Alternatives</h4>
                     <div className="alternatives-list">
@@ -537,7 +673,6 @@ function App() {
                     </div>
                   </div>
                 </div>
-
                 <div className="modal-actions">
                   <button onClick={() => {
                     setSelectedDrug(selectedDrugDetails);

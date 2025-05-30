@@ -484,45 +484,94 @@ const drugs = [
   {
     name: "Cervical Cage",
     category: "Spine Implants",
-    price: 2500,
-    combination: false,
-    strength: "6mm",
-    dosageForm: "Implant",
+    price: 45000,
     manufacturer: "Medtronic",
-    sideEffects: ["Implant migration", "Adjacent segment disease", "Infection risk"],
+    material: "PEEK (Polyetheretherketone)",
+    size: "6mm x 14mm",
+    sterilization: "Gamma Sterilized",
+    shelfLife: "5 years",
+    surgicalTechnique: "Anterior Cervical Discectomy and Fusion (ACDF)",
+    compatibility: ["Cervical Plates", "Bone Grafts", "Screw Systems"],
+    certifications: ["CE Mark", "FDA Approved", "ISO 13485"],
+    warranty: "10 years",
+    surgicalTime: "1-2 hours",
+    recoveryTime: "4-6 weeks",
+    sideEffects: [
+      "Neck pain",
+      "Dysphagia",
+      "Adjacent segment disease",
+      "Hardware failure"
+    ],
     alternatives: [
       {
-        name: "PEEK Cage",
-        manufacturer: "DePuy Synthes",
-        price: 2800,
-        material: "PEEK",
-        advantages: ["Better imaging compatibility", "Lower stress shielding", "Natural bone-like modulus"]
-      },
-      {
-        name: "Titanium Cage",
-        manufacturer: "Stryker",
-        price: 3200,
-        material: "Titanium",
-        advantages: ["Superior strength", "Better osteointegration", "Long-term stability"]
+        name: "Titanium Cervical Cage",
+        manufacturer: "Johnson & Johnson",
+        price: 48000,
+        material: "Titanium Alloy",
+        advantages: [
+          "Better bone integration",
+          "Higher strength",
+          "Longer lifespan"
+        ]
       },
       {
         name: "Carbon Fiber Cage",
-        manufacturer: "NuVasive",
-        price: 3500,
-        material: "Carbon Fiber",
-        advantages: ["Excellent imaging", "Lightweight", "High strength-to-weight ratio"]
+        manufacturer: "Stryker",
+        price: 42000,
+        material: "Carbon Fiber Composite",
+        advantages: [
+          "Better imaging compatibility",
+          "Lighter weight",
+          "Reduced stress shielding"
+        ]
       }
-    ],
+    ]
+  },
+  {
+    name: "Lumbar Cage",
+    category: "Spine Implants",
+    price: 55000,
+    manufacturer: "Zimmer Biomet",
     material: "PEEK",
-    size: "6mm x 12mm",
-    sterilization: "Gamma Sterilized",
+    size: "8mm x 18mm",
+    sterilization: "Ethylene Oxide",
     shelfLife: "5 years",
-    surgicalTechnique: "ACDF",
-    compatibility: ["C3-C7", "C4-C6"],
-    certifications: ["CE", "FDA", "ISO 13485"],
-    warranty: "2 years",
-    surgicalTime: "45-60 minutes",
-    recoveryTime: "6-8 weeks"
+    surgicalTechnique: "Transforaminal Lumbar Interbody Fusion (TLIF)",
+    compatibility: ["Pedicle Screws", "Rod Systems", "Bone Grafts"],
+    certifications: ["CE Mark", "FDA Approved", "ISO 13485"],
+    warranty: "10 years",
+    surgicalTime: "2-3 hours",
+    recoveryTime: "6-8 weeks",
+    sideEffects: [
+      "Back pain",
+      "Nerve damage",
+      "Adjacent segment disease",
+      "Hardware failure"
+    ],
+    alternatives: [
+      {
+        name: "Expandable Lumbar Cage",
+        manufacturer: "NuVasive",
+        price: 58000,
+        material: "Titanium",
+        advantages: [
+          "Adjustable height",
+          "Better fit",
+          "Reduced subsidence"
+        ]
+      },
+      {
+        name: "3D Printed Lumbar Cage",
+        manufacturer: "Globus Medical",
+        price: 52000,
+        material: "Titanium Alloy",
+        advantages: [
+          "Custom fit",
+          "Better bone integration",
+          "Reduced surgical time"
+        ]
+      }
+    ]
   },
   {
     name: "Lumbar Pedicle Screw",

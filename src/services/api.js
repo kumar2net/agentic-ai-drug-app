@@ -38,7 +38,19 @@ class ApiService {
       throw new Error('Drug not found');
     }
     
-    // Handle both string and object alternatives
+    // For spine implants, return the complete object with all fields
+    if (mainDrug.category === 'Spine Implants') {
+      return {
+        ...mainDrug,
+        alternatives: mainDrug.alternatives.map(alt => ({
+          ...alt,
+          priceDifference: alt.price - mainDrug.price,
+          priceDifferencePercentage: ((alt.price - mainDrug.price) / mainDrug.price * 100).toFixed(1)
+        }))
+      };
+    }
+    
+    // For other drugs, handle both string and object alternatives
     const alternatives = mainDrug.alternatives.map(alt => {
       if (typeof alt === 'string') {
         const altDrug = drugs.find(d => d.name === alt);
