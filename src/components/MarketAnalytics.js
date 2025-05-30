@@ -9,20 +9,18 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  LineChart,
-  Line,
   PieChart,
   Pie,
   Cell,
   AreaChart,
-  Area
+  Area,
+  Line
 } from 'recharts';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'];
 
 const MarketAnalytics = () => {
   const [selectedTimeframe, setSelectedTimeframe] = useState('yearly');
-  const [selectedMetric, setSelectedMetric] = useState('volume');
 
   return (
     <div className="market-analytics">
