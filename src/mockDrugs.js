@@ -705,7 +705,7 @@ const drugs = [
   {
     name: "Spinal Cord Stimulator",
     category: "Spine Implants",
-    price: 15000,
+    price: 1500000,
     combination: false,
     strength: "N/A",
     dosageForm: "Device",
@@ -715,21 +715,21 @@ const drugs = [
       {
         name: "Medtronic SCS",
         manufacturer: "Medtronic",
-        price: 16000,
+        price: 1600000,
         material: "Titanium",
         advantages: ["Advanced programming", "Long battery life", "Multiple therapy options"]
       },
       {
         name: "Abbott SCS",
         manufacturer: "Abbott",
-        price: 15500,
+        price: 1550000,
         material: "Titanium",
         advantages: ["Burst stimulation", "Dorsal root ganglion targeting", "MRI compatibility"]
       },
       {
         name: "Nevro SCS",
         manufacturer: "Nevro",
-        price: 14500,
+        price: 1450000,
         material: "Titanium",
         advantages: ["High-frequency therapy", "No paresthesia", "Long-term pain relief"]
       }
