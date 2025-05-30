@@ -484,7 +484,7 @@ const drugs = [
   {
     name: "Cervical Cage",
     category: "Spine Implants",
-    price: 45000,
+    price: 85000,
     manufacturer: "Medtronic",
     material: "PEEK (Polyetheretherketone)",
     size: "6mm x 14mm",
@@ -506,7 +506,7 @@ const drugs = [
       {
         name: "Titanium Cervical Cage",
         manufacturer: "Johnson & Johnson",
-        price: 48000,
+        price: 95000,
         material: "Titanium Alloy",
         advantages: [
           "Better bone integration",
@@ -517,7 +517,7 @@ const drugs = [
       {
         name: "Carbon Fiber Cage",
         manufacturer: "Stryker",
-        price: 42000,
+        price: 78000,
         material: "Carbon Fiber Composite",
         advantages: [
           "Better imaging compatibility",
@@ -530,7 +530,7 @@ const drugs = [
   {
     name: "Lumbar Cage",
     category: "Spine Implants",
-    price: 55000,
+    price: 95000,
     manufacturer: "Zimmer Biomet",
     material: "PEEK",
     size: "8mm x 18mm",
@@ -552,7 +552,7 @@ const drugs = [
       {
         name: "Expandable Lumbar Cage",
         manufacturer: "NuVasive",
-        price: 58000,
+        price: 105000,
         material: "Titanium",
         advantages: [
           "Adjustable height",
@@ -563,7 +563,7 @@ const drugs = [
       {
         name: "3D Printed Lumbar Cage",
         manufacturer: "Globus Medical",
-        price: 52000,
+        price: 98000,
         material: "Titanium Alloy",
         advantages: [
           "Custom fit",
@@ -576,7 +576,7 @@ const drugs = [
   {
     name: "Lumbar Pedicle Screw",
     category: "Spine Implants",
-    price: 1800,
+    price: 8500,
     combination: false,
     strength: "6.5mm",
     dosageForm: "Implant",
@@ -586,21 +586,21 @@ const drugs = [
       {
         name: "Titanium Screw",
         manufacturer: "Medtronic",
-        price: 2000,
+        price: 9500,
         material: "Titanium",
         advantages: ["Excellent biocompatibility", "High strength", "Good imaging compatibility"]
       },
       {
         name: "Cobalt Chrome Screw",
         manufacturer: "Zimmer Biomet",
-        price: 2200,
+        price: 10500,
         material: "Cobalt Chrome",
         advantages: ["Superior wear resistance", "High fatigue strength", "Long-term durability"]
       },
       {
         name: "Polyaxial Screw",
         manufacturer: "Globus Medical",
-        price: 1900,
+        price: 9000,
         material: "Titanium",
         advantages: ["Multi-directional fixation", "Easier rod placement", "Better anatomical fit"]
       }
@@ -619,7 +619,7 @@ const drugs = [
   {
     name: "Interbody Fusion Device",
     category: "Spine Implants",
-    price: 3200,
+    price: 75000,
     combination: false,
     strength: "8mm",
     dosageForm: "Implant",
@@ -629,21 +629,21 @@ const drugs = [
       {
         name: "ALIF Device",
         manufacturer: "Medtronic",
-        price: 3500,
+        price: 85000,
         material: "PEEK",
         advantages: ["Larger footprint", "Better lordosis restoration", "Reduced approach morbidity"]
       },
       {
         name: "TLIF Device",
         manufacturer: "DePuy Synthes",
-        price: 3300,
+        price: 78000,
         material: "Titanium",
         advantages: ["Posterior approach", "Unilateral access", "Reduced nerve retraction"]
       },
       {
         name: "PLIF Device",
         manufacturer: "Stryker",
-        price: 3400,
+        price: 80000,
         material: "PEEK",
         advantages: ["Bilateral access", "Direct decompression", "Familiar approach"]
       }
@@ -748,7 +748,7 @@ const drugs = [
   {
     name: "Vertebral Body Replacement",
     category: "Spine Implants",
-    price: 3800,
+    price: 85000,
     combination: false,
     strength: "Expandable",
     dosageForm: "Implant",
@@ -758,21 +758,21 @@ const drugs = [
       {
         name: "Static VBR",
         manufacturer: "DePuy Synthes",
-        price: 3500,
+        price: 75000,
         material: "Titanium",
         advantages: ["Simple design", "Cost-effective", "Proven reliability"]
       },
       {
         name: "Expandable VBR",
         manufacturer: "Globus Medical",
-        price: 4200,
+        price: 95000,
         material: "Titanium",
         advantages: ["Adjustable height", "Better fit", "Reduced subsidence risk"]
       },
       {
         name: "Mesh Cage",
         manufacturer: "Medtronic",
-        price: 3600,
+        price: 78000,
         material: "Titanium",
         advantages: ["Bone graft containment", "Good stability", "Cost-effective"]
       }
@@ -791,7 +791,7 @@ const drugs = [
   {
     name: "Interspinous Process Spacer",
     category: "Spine Implants",
-    price: 2800,
+    price: 45000,
     combination: false,
     strength: "N/A",
     dosageForm: "Implant",
@@ -801,21 +801,21 @@ const drugs = [
       {
         name: "X-STOP",
         manufacturer: "Medtronic",
-        price: 3000,
+        price: 50000,
         material: "Titanium",
         advantages: ["Minimally invasive", "Preserves motion", "Quick recovery"]
       },
       {
         name: "Coflex",
         manufacturer: "Paradigm Spine",
-        price: 3200,
+        price: 55000,
         material: "Titanium",
         advantages: ["Dynamic stabilization", "Motion preservation", "Reduced adjacent level stress"]
       },
       {
         name: "DIAM",
         manufacturer: "Medtronic",
-        price: 2900,
+        price: 48000,
         material: "Silicone",
         advantages: ["Soft tissue stabilization", "Minimal bone removal", "Quick recovery"]
       }
