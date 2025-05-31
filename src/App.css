@@ -1086,6 +1086,38 @@ h3 {
   align-items: center;
 }
 
+.report-selector {
+  width: 100%;
+  max-width: 400px;
+}
+
+.report-select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+}
+
+.report-select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.report-select:hover {
+  border-color: #3498db;
+}
+
 .timeframe-selector {
   display: flex;
   gap: 1rem;
@@ -1381,4 +1413,16 @@ h3 {
     min-width: auto;
     width: 100%;
   }
+}
+
+.report-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.report-date {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 } 
