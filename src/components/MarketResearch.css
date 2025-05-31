@@ -1,0 +1,564 @@
+.market-research {
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.research-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.research-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.report-selector {
+  min-width: 300px;
+}
+
+.report-combo-box {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.report-combo-box:hover {
+  border-color: #3498db;
+}
+
+.report-combo-box:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.report-container {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.report-description {
+  color: #666;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.report-content {
+  margin-top: 20px;
+}
+
+.report-content h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Metrics and Cards */
+.metric-card, .competitor-card, .price-metric, .forecast-metric, .tech-trend-card {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.metric-card h4, .competitor-card h4, .price-metric h4, .forecast-metric h4, .tech-trend-card h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.metric-value, .price-value, .forecast-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.metric-change, .price-change {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.metric-change.positive, .price-change.positive {
+  color: #27ae60;
+}
+
+.metric-change.negative, .price-change.negative {
+  color: #e74c3c;
+}
+
+/* Grids and Layouts */
+.trend-metrics, .competitor-grid, .price-metrics, .forecast-metrics, .tech-trends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Charts */
+.chart-placeholder {
+  background: #f8f9fa;
+  border: 2px dashed #ddd;
+  border-radius: 6px;
+  padding: 40px;
+  text-align: center;
+  color: #666;
+  margin: 20px 0;
+}
+
+/* Competitor Analysis */
+.competitor-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.competitor-metrics .metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.competitor-strengths {
+  margin-top: 15px;
+}
+
+.competitor-strengths h5 {
+  margin: 0 0 10px 0;
+  color: #666;
+}
+
+.competitor-strengths ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* Regulatory Updates */
+.regulatory-timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.regulatory-update {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.regulatory-update:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ddd;
+}
+
+.update-date {
+  position: absolute;
+  left: -30px;
+  background: #3498db;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.update-content {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.update-content h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.update-impact {
+  margin-top: 10px;
+  color: #666;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.loading-spinner::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error Message */
+.error-message {
+  background: #fee;
+  color: #e74c3c;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .research-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .report-selector {
+    width: 100%;
+  }
+
+  .competitor-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .regulatory-timeline {
+    padding-left: 20px;
+  }
+
+  .update-date {
+    position: relative;
+    left: 0;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+}
+
+/* Cervical Disc Replacement Specific Styles */
+.procedure-overview,
+.market-size-section,
+.key-players-section,
+.procedure-trends-section,
+.cost-analysis-section,
+.clinical-outcomes-section {
+  margin-bottom: 40px;
+}
+
+.metrics-grid,
+.market-metrics,
+.cost-metrics,
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.trends-table {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.trends-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.trends-table th,
+.trends-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.trends-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.trends-table tr:last-child td {
+  border-bottom: none;
+}
+
+.trends-table td.positive {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.trends-table td.negative {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.competitor-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.competitor-card h5 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.market-share {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.products h6,
+.strengths h6 {
+  margin: 15px 0 10px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.products ul,
+.strengths ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.products li,
+.strengths li {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+/* Responsive adjustments for cervical disc section */
+@media (max-width: 768px) {
+  .metrics-grid,
+  .market-metrics,
+  .cost-metrics,
+  .outcomes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trends-table {
+    margin: 20px -20px;
+    padding: 0 20px;
+  }
+
+  .competitor-card {
+    margin-bottom: 20px;
+  }
+}
+
+/* State Analysis */
+.state-analysis {
+  margin-bottom: 40px;
+}
+
+.state-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.state-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.state-card h5 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.state-metrics {
+  display: grid;
+  gap: 10px;
+}
+
+.state-metrics .metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.state-metrics .metric:last-child {
+  border-bottom: none;
+}
+
+/* Company Analysis */
+.company-analysis {
+  margin-bottom: 40px;
+}
+
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.company-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.company-card h5 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.company-metrics {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.company-metrics .metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Volume Analysis */
+.volume-analysis {
+  margin-bottom: 40px;
+}
+
+.volume-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Surgeons Section */
+.surgeons-section {
+  margin-bottom: 40px;
+}
+
+.surgeons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.surgeon-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.surgeon-card h5 {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.hospital-name {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.procedure-count {
+  font-weight: 600;
+  color: #3498db;
+}
+
+/* Forecast Section */
+.forecast-section {
+  margin-bottom: 40px;
+}
+
+.forecast-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.forecast-factors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.drivers, .challenges {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.drivers h5, .challenges h5 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.drivers ul, .challenges ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.drivers li, .challenges li {
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.metric-subtext {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .state-grid,
+  .company-grid,
+  .surgeons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-factors {
+    grid-template-columns: 1fr;
+  }
+
+  .company-metrics {
+    grid-template-columns: 1fr;
+  }
+} 
